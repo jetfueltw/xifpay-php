@@ -1,0 +1,51 @@
+<?php
+
+namespace Jetfuel\Xifpay;
+
+class Signature
+{
+    /**
+     * Generate signature.
+     *
+     * @param array $payload
+     * @param string $secretKey
+     * @return string
+     */
+    public static function generate(array $payload, $secretKey)
+    {
+        $baseString = self::buildBaseString($payload) . $secretKey;
+
+        var_dump($baseString);
+        
+        return strtoupper(sha1($baseString));
+        //return strtoupper(hash('sha1', $baseString));
+    }
+
+    /**
+     * @param array $payload
+     * @param string $secretKey
+     * @param string $signature
+     * @return bool
+     */
+    public static function validate(array $payload, $secretKey, $signature)
+    {
+        return self::generate($payload, $secretKey) === $signature;
+    }
+
+    private static function buildBaseString(array $payload)
+    {
+        ksort($payload);
+
+        $baseString = '';
+        foreach ($payload as $key => $value) {
+            $baseString .= $key.'='.$value.'&';
+        }
+
+        return rtrim($baseString, '&');
+    }
+
+    // private static function md5Hash($data)
+    // {
+    //     return strtoupper(md5($data));
+    // }
+}
