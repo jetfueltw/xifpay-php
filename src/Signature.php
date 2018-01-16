@@ -15,10 +15,7 @@ class Signature
     {
         $baseString = self::buildBaseString($payload) . $secretKey;
 
-        var_dump($baseString);
-        
         return strtoupper(sha1($baseString));
-        //return strtoupper(hash('sha1', $baseString));
     }
 
     /**
@@ -43,9 +40,4 @@ class Signature
 
         return rtrim($baseString, '&');
     }
-
-    // private static function md5Hash($data)
-    // {
-    //     return strtoupper(md5($data));
-    // }
 }

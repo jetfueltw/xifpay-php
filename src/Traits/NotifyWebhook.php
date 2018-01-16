@@ -23,7 +23,7 @@ trait NotifyWebhook
 
         $signature = $payload['sign'];
 
-        unset($payload['ext']);
+        unset($payload['signType']);
         unset($payload['sign']);
 
         return Signature::validate($payload, $secretKey, $signature);
@@ -42,8 +42,6 @@ trait NotifyWebhook
             return null;
         }
 
-        $payload['totalAmount'] = $this->convertFenToYuan($payload['totalAmount']);
-
         return $payload;
     }
 
@@ -54,6 +52,6 @@ trait NotifyWebhook
      */
     public function successNotifyResponse()
     {
-        return '{"code":"00"}';
+        return 'success';
     }
 }

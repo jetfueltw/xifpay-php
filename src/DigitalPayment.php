@@ -36,7 +36,7 @@ class DigitalPayment extends Payment
         $payload = $this->signPayload([
             'body'            => self::GOODS_BODY,
             'charset'         => 'UTF-8',
-            'defaultBank'     => $channel,
+            'defaultbank'     => $channel,
             'isApp'           => self::APP,
             'notifyUrl'       => $notifyUrl,
             'orderNo'         => $tradeNo,
@@ -47,8 +47,6 @@ class DigitalPayment extends Payment
             'title'           => self::GOODS_NAME,
             'totalFee'        => $amount,
         ]);
-
-        var_dump($payload);
 
         return $this->parseResponse($this->httpClient->post($this->merchantId .'-'  . $tradeNo, $payload));
     }

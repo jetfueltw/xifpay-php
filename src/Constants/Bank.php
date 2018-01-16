@@ -32,7 +32,7 @@ class Bank
     /**
      * 交通銀行
      */
-    const BCM = 'BCM';
+    const BOCM = 'BOCM';
 
     /**
      * 興業銀行
@@ -57,7 +57,7 @@ class Bank
     /**
      * 平安銀行
      */
-    const PAB = 'PAB';
+    const PAYH = 'PAYH';
 
     /**
      * 中信銀行
@@ -67,7 +67,7 @@ class Bank
     /**
      * 廣發銀行
      */
-    const GDB = 'GDB';
+    const CGB = 'CGB';
 
     /**
      * 中國郵政儲蓄銀行

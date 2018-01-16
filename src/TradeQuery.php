@@ -29,16 +29,11 @@ class TradeQuery extends Payment
     public function find($tradeNo)
     {
         $payload = $this->signPayload([
-            'outOrderId' => $tradeNo,
+            'orderNo' => $tradeNo,
+            'charset' => 'UTF-8',
         ]);
 
-        $order = $this->parseResponse($this->httpClient->post('ebank/queryOrder.do', $payload));
-
-        if (empty($order['data']) || !isset($order['data']['amount'])) {
-            return null;
-        }
-
-        $order['data']['amount'] = $this->convertFenToYuan($order['data']['amount']);
+        $order = $this->parseResponse($this->httpClient->get($this->merchantId .'-'  . $tradeNo, $payload));
 
         return $order;
     }
@@ -53,7 +48,7 @@ class TradeQuery extends Payment
     {
         $order = $this->find($tradeNo);
 
-        if ($order === null || !isset($order['data']['replyCode']) || $order['data']['replyCode'] !== '00') {
+        if ($order === null || !isset($order['status']) || $order['status'] !== 'completed') {
             return false;
         }
 

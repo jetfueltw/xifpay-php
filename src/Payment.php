@@ -15,9 +15,6 @@ class Payment
     const PAY_METHOD     = 'directPay';
     const SERVICE        = 'online_pay';
     const SIGN_TYPE      = 'SHA';
-    const TIME_ZONE      = 'Asia/Shanghai';
-    const TIME_FORMAT    = 'YmdHis';
-    const PAYMENT_EXPIRE = 8 * 60;
 
     /**
      * @var string
@@ -71,23 +68,4 @@ class Payment
         return $payload;
     }
 
-    /**
-     * Get current time.
-     *
-     * @return string
-     */
-    protected function getCurrentTime()
-    {
-        return (new \DateTime('now', new \DateTimeZone(self::TIME_ZONE)))->format(self::TIME_FORMAT);
-    }
-
-    /**
-     * Get payment expire time.
-     *
-     * @return string
-     */
-    protected function getExpireTime()
-    {
-        return (new \DateTime('now +'.self::PAYMENT_EXPIRE.' minute', new \DateTimeZone(self::TIME_ZONE)))->format(self::TIME_FORMAT);
-    }
 }
