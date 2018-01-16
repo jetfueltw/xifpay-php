@@ -63,7 +63,6 @@ class Payment
         $payload['merchantId'] = $this->merchantId;
         $payload['sign'] = Signature::generate($payload, $this->secretKey);
         $payload['signType'] = self::SIGN_TYPE;
-        //$payload['apikey'] = $this->secretKey;
 
         return $payload;
     }
