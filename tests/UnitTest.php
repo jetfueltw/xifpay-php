@@ -158,8 +158,8 @@ class UnitTest extends TestCase
             'trade_no'      => 'aaabbb0001',
             'trade_status'  => 'TRADE_FINISHED',
             'use_coupon'    => 'N',
-            'sign_type'     => 'SHA',
-            'sign'          => '75E0832B2D2B744F02791558DB8E8DD447D85ECD',
+            'signType'     => 'SHA',
+            'sign'          => '03FFF898135CA0DA5FCD653E1AEACCFC3E5B82DA',
         ];
 
         $this->assertTrue($mock->verifyNotifyPayload($payload, $this->secretKey));
@@ -187,8 +187,8 @@ class UnitTest extends TestCase
             'trade_no'      => 'aaabbb0001',
             'trade_status'  => 'TRADE_FINISHED',
             'use_coupon'    => 'N',
-            'sign_type'     => 'SHA',
-            'sign'          => '75E0832B2D2B744F02791558DB8E8DD447D85ECD',
+            'signType'     => 'SHA',
+            'sign'          => '03FFF898135CA0DA5FCD653E1AEACCFC3E5B82DA',
         ];
 
         $this->assertEquals([
@@ -209,8 +209,8 @@ class UnitTest extends TestCase
             'trade_no'      => 'aaabbb0001',
             'trade_status'  => 'TRADE_FINISHED',
             'use_coupon'    => 'N',
-            'sign_type'     => 'SHA',
-            'sign'          => '75E0832B2D2B744F02791558DB8E8DD447D85ECD',
+            'signType'     => 'SHA',
+            'sign'          => '03FFF898135CA0DA5FCD653E1AEACCFC3E5B82DA',
         ], $mock->parseNotifyPayload($payload, $this->secretKey));
     }
 

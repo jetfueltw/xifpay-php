@@ -50,10 +50,36 @@ Result:
 * 通知的消費金額單位為 `元`。 
 
 ```
-Post Data:
+Post Data: (並非每個欄位都會回傳)
 [
-    WAIT　FOR UPDATE.....ｆ
-    'sign' => '1C1E6B6DCD8DC9F70565AFXXXXXXXXXX', // 簽名(字母大寫)
+    'body' => 'GOODS_BODY', //商品描述
+    'buyer_email' => 'XXXXXXXXXXXXX', // 買家email
+    'buyer_id' => 'XXXXXXXXXXXX', // 買家ID
+    'discount' => '0.00', //折扣
+    'ext_param1' => 'XXXXXXX', //預留
+    'ext_param2' => 'XXXXXXX', //當支付通道為支付寶（ALIPAY）、QQ（QQPAY）等時，異步通知返回擴展字段ext_param2，賦值為相應的通道編碼，如：ext_param2=ALIPAY
+    'gmt_create' => '2018-01-16 16:13:29', //交易創建時間
+    'gmt_logistics_modify' => '2018-01-16 16:23:29', //訂單更改時間
+    'gmt_payment' => '2018-01-16 19:13:29', //交易付款時間
+    'is_success' => 'X', //通訊狀態 T表示成功；F表示失敗
+    'is_total_fee_adjust' => 5.00, // 總費用, 預留
+    'notify_id' => 'XXXXXXXX', // 通知流水號
+    'notify_time' => '2018-01-16 20:13:29', // 通知時間
+    'notify_type' => 'WAIT_TRIGGER',
+    'order_no' => '20180109023351XXXXX', // 商户订单号
+    'payment_type' => '1', //固定值
+    'price' => '0.00', //單價, 預留值
+    'quantity' => '1', //數量, 預留值
+    'seller_actions' => 'SEND_GOODS', //固定值
+    'seller_email' => 'XXXXXX', //賣家email
+    'seller_id' => 'XXXXX', //賣家id
+    'title' => 'GOODS_NAME', //商品名稱
+    'total_fee' => 1.00, //交易金額 單位為元
+    'trade_no' => 'XXXXXXXXXXXXXX', // 平台交易流水號
+    'trade_status' => 'TRADE_FINISHED', //成功狀態
+    'use_coupon' => 'X', //是否使用優惠券
+    'sign' => 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', // 簽名(字母大寫)
+    'signType' => 'SHA', //簽名類型
 ]
 ```
 
