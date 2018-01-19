@@ -6,8 +6,6 @@ use Jetfuel\Xifpay\Signature;
 
 trait NotifyWebhook
 {
-    use ConvertMoney;
-
     /**
      * Verify notify request's signature.
      *

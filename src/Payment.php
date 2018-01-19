@@ -3,18 +3,17 @@
 namespace Jetfuel\Xifpay;
 
 use Jetfuel\Xifpay\HttpClient\GuzzleHttpClient;
-use Jetfuel\Xifpay\Traits\ConvertMoney;
 
 class Payment
 {
-    use ConvertMoney;
-
-    const BASE_API_URL   = 'https://ebank.xifpay.com/payment/v1/order/';
-    const GOODS_BODY     = 'GOODS_BODY';
-    const GOODS_NAME     = 'GOODS_NAME';
-    const PAY_METHOD     = 'directPay';
-    const SERVICE        = 'online_pay';
-    const SIGN_TYPE      = 'SHA';
+    const BASE_API_URL = 'https://ebank.xifpay.com/payment/v1/order/';
+    const GOODS_BODY   = 'GOODS_BODY';
+    const GOODS_NAME   = 'GOODS_NAME';
+    const PAYMENT_TYPE = '1';
+    const PAY_METHOD   = 'directPay';
+    const SERVICE      = 'online_pay';
+    const CHARSET      = 'UTF-8';
+    const SIGN_TYPE    = 'SHA';
 
     /**
      * @var string
@@ -61,10 +60,10 @@ class Payment
     protected function signPayload(array $payload)
     {
         $payload['merchantId'] = $this->merchantId;
+        $payload['charset'] = self::CHARSET;
         $payload['sign'] = Signature::generate($payload, $this->secretKey);
         $payload['signType'] = self::SIGN_TYPE;
 
         return $payload;
     }
-
 }

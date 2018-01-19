@@ -30,10 +30,13 @@ class TradeQuery extends Payment
     {
         $payload = $this->signPayload([
             'orderNo' => $tradeNo,
-            'charset' => 'UTF-8',
         ]);
 
-        $order = $this->parseResponse($this->httpClient->get($this->merchantId .'-'  . $tradeNo, $payload));
+        $order = $this->parseResponse($this->httpClient->get($this->merchantId.'-'.$tradeNo, $payload));
+
+        if ($order['respCode'] !== 'S0001') {
+            return null;
+        }
 
         return $order;
     }
