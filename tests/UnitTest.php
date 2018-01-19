@@ -73,7 +73,7 @@ class UnitTest extends TestCase
     {
         $faker = Factory::create();
         $tradeNo = $tradeNo = date('YmdHis').rand(10000, 99999);
-        $bank = Bank::CCB;
+        $bank = Bank::ICBC;
         $amount = 1;
         $returnUrl = $faker->url;
         $notifyUrl = $faker->url;
@@ -120,9 +120,8 @@ class UnitTest extends TestCase
 
         $tradeQuery = new TradeQuery($this->merchantId, $this->secretKey);
         $result = $tradeQuery->find($tradeNo);
-        var_dump($result);
 
-        $this->assertEquals('F2001', $result['respCode']);
+        $this->assertNull($result);
     }
 
     public function testTradeQueryIsPaidOrderNotExist()

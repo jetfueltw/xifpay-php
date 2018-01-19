@@ -34,6 +34,9 @@ class TradeQuery extends Payment
         ]);
 
         $order = $this->parseResponse($this->httpClient->get($this->merchantId .'-'  . $tradeNo, $payload));
+        if ($order === null || !isset($order['respCode']) || $order['respCode'] !== 'S0001') {
+            return null;
+        }
 
         return $order;
     }
