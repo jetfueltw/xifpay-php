@@ -9,6 +9,7 @@ use Jetfuel\Xifpay\Constants\Channel;
 use Jetfuel\Xifpay\DigitalPayment;
 use Jetfuel\Xifpay\TradeQuery;
 use Jetfuel\Xifpay\Traits\NotifyWebhook;
+use Jetfuel\Xifpay\BalanceQuery;
 use PHPUnit\Framework\TestCase;
 
 class UnitTest extends TestCase
@@ -28,7 +29,7 @@ class UnitTest extends TestCase
     {
         $faker = Factory::create();
         $tradeNo = $tradeNo = date('YmdHis').rand(10000, 99999);
-        $channel = Channel::WECHAT;
+        $channel = Channel::QQ;
         $amount = 1;
         $clientIp = $faker->ipv4;
         $notifyUrl = $faker->url;
@@ -218,5 +219,14 @@ class UnitTest extends TestCase
         $mock = $this->getMockForTrait(NotifyWebhook::class);
 
         $this->assertEquals('success', $mock->successNotifyResponse());
+    }
+
+    public function testBlanceQuery()
+    {
+        $balance = new BalanceQuery($this->merchantId, $this->secretKey);
+        $result = $balance->query();
+        var_dump($result);
+
+        $this->assertEquals('succ', $result['status']);
     }
 }

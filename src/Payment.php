@@ -67,4 +67,19 @@ class Payment
         return $payload;
     }
 
+    /**
+     * Sign Balance Query request payload.
+     *
+     * @param array $payload
+     * @return array
+     */
+    protected function signBalancePayload(array $payload)
+    {
+        $payload['customerNo'] = $this->merchantId;
+        $payload['sign'] = Signature::generate($payload, $this->secretKey);
+        $payload['signType'] = self::SIGN_TYPE;
+
+        return $payload;
+    }
+
 }
