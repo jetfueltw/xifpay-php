@@ -20,17 +20,17 @@ class Channel
     const QQ = 'QQPAY';
 
     /**
-     * 京东扫码
+     * 京東支付
      */
-    const JD = 'JDPAY';
+    const JDPAY = 'JDPAY';
+
+    /**
+     * 銀聯
+     */
+    const UNIONPAY = 'UNIONPAY';
 
     /**
      * 快捷支付
      */
-    const QUICK = 'QUICKPAY';
-
-    /**
-     * 中国银联
-     */
-    const UNION = 'UNIONPAY';
+    const QUICKPAY = 'QUICKPAY';
 }

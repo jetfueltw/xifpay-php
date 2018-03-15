@@ -4,7 +4,8 @@ namespace Jetfuel\Xifpay;
 
 class BankPayment extends Payment
 {
-    const WEB = 'web';
+    const IS_APP = 'web';
+
     /**
      * BankPayment constructor.
      *
@@ -30,20 +31,19 @@ class BankPayment extends Payment
     public function order($tradeNo, $bank, $amount, $notifyUrl, $returnUrl)
     {
         $payload = $this->signPayload([
-            'body'            => self::GOODS_BODY,
-            'charset'         => 'UTF-8',
-            'defaultbank'     => $bank,
-            'isApp'           => self::WEB,
-            'notifyUrl'       => $notifyUrl,
-            'orderNo'         => $tradeNo,
-            'paymentType'     => '1',
-            'paymethod'       => self::PAY_METHOD,
-            'returnUrl'       => $returnUrl,
-            'service'         => self::SERVICE,
-            'title'           => self::GOODS_NAME,
-            'totalFee'        => $amount,
+            'body'        => self::GOODS_BODY,
+            'defaultbank' => $bank,
+            'isApp'       => self::IS_APP,
+            'notifyUrl'   => $notifyUrl,
+            'orderNo'     => $tradeNo,
+            'paymentType' => self::PAYMENT_TYPE,
+            'paymethod'   => self::PAY_METHOD,
+            'returnUrl'   => $returnUrl,
+            'service'     => self::SERVICE,
+            'title'       => self::GOODS_NAME,
+            'totalFee'    => $amount,
         ]);
 
-        return $this->httpClient->post($this->merchantId .'-'  . $tradeNo, $payload);
+        return $this->httpClient->post($this->merchantId.'-'.$tradeNo, $payload);
     }
 }

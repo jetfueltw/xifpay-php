@@ -24,7 +24,7 @@ class GuzzleHttpClient implements HttpClientInterface
     public function __construct($baseUrl)
     {
         $this->baseUrl = rtrim($baseUrl, '/').'/';
-        $this->client = new Client(['verify' => false]);
+        $this->client = new Client();
     }
 
     /**
@@ -39,12 +39,13 @@ class GuzzleHttpClient implements HttpClientInterface
         $headers = [
             'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
         ];
-         $response = $this->client->request('GET',$this->baseUrl.$uri, [
-             'headers'     => $headers,
-             'query'       => $data,
-         ]);
+        $response = $this->client->get($this->baseUrl.$uri, [
+            'headers' => $headers,
+            'query'   => $data,
+        ]);
         return $response->getBody()->getContents();
     }
+
     /**
      * POST request.
      *
@@ -54,7 +55,6 @@ class GuzzleHttpClient implements HttpClientInterface
      */
     public function post($uri, array $data)
     {
-
         $headers = [
             'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
         ];

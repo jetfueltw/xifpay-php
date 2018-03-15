@@ -13,7 +13,7 @@ class Signature
      */
     public static function generate(array $payload, $secretKey)
     {
-        $baseString = self::buildBaseString($payload) . $secretKey;
+        $baseString = self::buildBaseString($payload).$secretKey;
 
         return strtoupper(sha1($baseString));
     }
