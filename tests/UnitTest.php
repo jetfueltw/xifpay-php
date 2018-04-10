@@ -81,7 +81,7 @@ class UnitTest extends TestCase
         $result = $payment->order($tradeNo, $bank, $amount, $notifyUrl, $returnUrl);
         var_dump($result);
 
-        //$this->assertContains('<form', $result, '', true);
+        $this->assertContains('<form', $result, '', true);
 
         return $tradeNo;
     }
@@ -91,26 +91,26 @@ class UnitTest extends TestCase
      *
      * @param $tradeNo
      */
-    public function testBankPaymentOrderFind($tradeNo)
-    {
-        $tradeQuery = new TradeQuery($this->merchantId, $this->secretKey);
-        $result = $tradeQuery->find($tradeNo);
+    // public function testBankPaymentOrderFind($tradeNo)
+    // {
+    //     $tradeQuery = new TradeQuery($this->merchantId, $this->secretKey);
+    //     $result = $tradeQuery->find($tradeNo);
 
-        $this->assertEquals('S0001', $result['respCode']);
-    }
+    //     $this->assertEquals('S0001', $result['respCode']);
+    // }
 
     /**
      * @depends testBankPaymentOrder
      *
      * @param $tradeNo
      */
-    public function testBankPaymentOrderIsPaid($tradeNo)
-    {
-        $tradeQuery = new TradeQuery($this->merchantId, $this->secretKey);
-        $result = $tradeQuery->isPaid($tradeNo);
+    // public function testBankPaymentOrderIsPaid($tradeNo)
+    // {
+    //     $tradeQuery = new TradeQuery($this->merchantId, $this->secretKey);
+    //     $result = $tradeQuery->isPaid($tradeNo);
 
-        $this->assertFalse($result);
-    }
+    //     $this->assertFalse($result);
+    // }
 
     public function testTradeQueryFindOrderNotExist()
     {
@@ -155,7 +155,7 @@ class UnitTest extends TestCase
             'trade_no'       => 'aaabbb0001',
             'trade_status'   => 'TRADE_FINISHED',
             'signType'       => 'SHA',
-            'sign'           => '9343B14E30CEDDE75128603E5E15C93CD80A3651',
+            'sign'           => 'DBE7A98A3381D89200223F7AFF5103BD86F78D40',
         ];
 
         $this->assertTrue($mock->verifyNotifyPayload($payload, $this->secretKey));
@@ -182,7 +182,7 @@ class UnitTest extends TestCase
             'trade_no'       => 'aaabbb0001',
             'trade_status'   => 'TRADE_FINISHED',
             'signType'       => 'SHA',
-            'sign'           => '9343B14E30CEDDE75128603E5E15C93CD80A3651',
+            'sign'           => 'DBE7A98A3381D89200223F7AFF5103BD86F78D40',
         ];
 
         $this->assertEquals([
@@ -202,7 +202,7 @@ class UnitTest extends TestCase
             'trade_no'       => 'aaabbb0001',
             'trade_status'   => 'TRADE_FINISHED',
             'signType'       => 'SHA',
-            'sign'           => '9343B14E30CEDDE75128603E5E15C93CD80A3651',
+            'sign'           => 'DBE7A98A3381D89200223F7AFF5103BD86F78D40',
         ], $mock->parseNotifyPayload($payload, $this->secretKey));
     }
 
