@@ -45,8 +45,7 @@ class BankPayment extends Payment
         ]);
 
         //Becasue Guzzle post will not work(reason unknown), use form post directly
-            var_dump($payload);
-            $html = self::postHtml($this->baseApiUrl.$this->merchantId.'-'.$tradeNo,$payload);
+        $html = self::postHtml($this->baseApiUrl.$this->merchantId.'-'.$tradeNo,$payload);
         //return $this->httpClient->post($this->merchantId.'-'.$tradeNo, $payload);
         return $html;
     }
