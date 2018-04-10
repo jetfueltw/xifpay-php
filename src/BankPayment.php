@@ -52,15 +52,15 @@ class BankPayment extends Payment
 
     public static function postHtml($url, array $payload){
 
-        $FormString = "<html><head></head><body><form id=\"actform\" name=\"actform\" method=\"post\" action=\"" . $url . "\">";
+        $formString = "<html><head></head><body><form id=\"actform\" name=\"actform\" method=\"post\" action=\"" . $url . "\">";
 
         foreach($payload as $key => $value){
-            $FormString .="<input name=\"" . $key . "\" type=\"hidden\" value='" . $value . "'>\r\n";
+            $formString .="<input name=\"" . $key . "\" type=\"hidden\" value='" . $value . "'>\r\n";
         }
 
-        $FormString .="</form><script>document.actform.submit();</script></body></html>";
+        $formString .="</form><script>document.actform.submit();</script></body></html>";
 
-        return $FormString;
+        return $formString;
     }
 
 }
