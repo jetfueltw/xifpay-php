@@ -44,6 +44,25 @@ class BankPayment extends Payment
             'totalFee'    => $amount,
         ]);
 
-        return $this->httpClient->post($this->merchantId.'-'.$tradeNo, $payload);
+        //Becasue Guzzle post will not work(reason unknown), use form post directly
+            var_dump($payload);
+            $html = self::postHtml($this->baseApiUrl.$this->merchantId.'-'.$tradeNo,$payload);
+            var_dump($html);
+        //return $this->httpClient->post($this->merchantId.'-'.$tradeNo, $payload);
+        return $html;
     }
+
+    public static function postHtml($url, array $payload){
+
+        $FormString = "<html><head></head><body><form id=\"actform\" name=\"actform\" method=\"post\" action=\"" . $Url . "\">";
+
+        foreach($PostArry as $key => $value){
+            $FormString .="<input name=\"" . $key . "\" type=\"hidden\" value='" . $value . "'>\r\n";
+        }
+
+        $FormString .="</form><script>document.actform.submit();</script></body></html>";
+
+        return $FormString;
+    }
+
 }

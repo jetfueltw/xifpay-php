@@ -47,7 +47,7 @@ class DigitalPayment extends Payment
             'title'       => self::GOODS_NAME,
             'totalFee'    => $amount,
         ]);
-
+        var_dump($payload);
         return $this->parseResponse($this->httpClient->post($this->merchantId.'-'.$tradeNo, $payload));
     }
 }
