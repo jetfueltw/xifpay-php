@@ -42,7 +42,7 @@ class Bank
     /**
      * 廣發銀行
      */
-    const CGB = 'CGB';
+    const GDB = 'GDB';
 
     /**
      * 中信銀行
@@ -72,7 +72,7 @@ class Bank
     /**
      * 華夏銀行
      */
-    const HXB = 'HXB';
+    const HXB = 'HXBANK';
 
     /**
      * 中國郵政儲蓄銀行
