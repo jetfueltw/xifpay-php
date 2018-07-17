@@ -33,4 +33,9 @@ class Channel
      * 快捷支付
      */
     const QUICKPAY = 'QUICKPAY';
+
+    /**
+     * 銀聯掃碼
+     */
+    const UNIONQRPAY = 'UNIONQRPAY';
 }
